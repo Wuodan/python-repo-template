@@ -1,13 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.18,<2", "hatch-vcs>=0.0,<1"]
+build-backend = "hatchling.build"
+
+[project]
+name = "change-me"
+description = "Replace this description"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Your Name" }]
+dynamic = ["version"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/<YOUR_PACKAGE_NAME>"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/**",
+  "LICENSE",
+  "README.md",
+  "pyproject.toml",
+]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/<YOUR_PACKAGE_NAME>/_version.py"
+
+[tool.coverage.run]
+omit = [
+  "src/*/_version.py",
+]
+
 [tool.ruff]
 line-length = 120
 
 [tool.ruff.lint]
 select = [
-  "E", "F",
-  "I",
-  "UP",
-  "B",
-  "PL",
-  "SLF",
+  "E", "F",        # correctness
+  "I",             # imports
+  "UP",            # pyupgrade
+  "B",             # bugbear
+  "PL",            # pylint rules (incl. protected access)
+  "SLF",           # flake8-self (private member access)
 ]
 per-file-ignores = { "tests/**" = ["SLF001"] }

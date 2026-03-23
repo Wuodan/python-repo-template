@@ -36,3 +36,4 @@ pytest
 - source layout is expected under `src/`
 - tests are expected under `tests/` as packages
 - `tests/repo_rules/` is generic and does not need renaming
+- `pyproject.toml` defaults to `hatchling` plus VCS-based package versioning
