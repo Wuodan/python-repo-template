@@ -17,6 +17,7 @@ packages = ["src/<YOUR_PACKAGE_NAME>"]
 [tool.hatch.build.targets.sdist]
 include = [
   "src/**",
+  "tests/**",
   "LICENSE",
   "README.md",
   "pyproject.toml",
